@@ -1,10 +1,14 @@
 const express = require("express")
 const {errorHandler} = require("./middlewares/errorMiddleware")
 const dotenv = require("dotenv").config()
+const {connectDB} = require("./config/db")
 
 
 //Setting up the port on which server will listen the requests and send response.
 const PORT = process.env.PORT
+
+//connecting with the mongoDB database using mongoose library
+connectDB()
 
 
 //Creating express app
