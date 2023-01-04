@@ -1,5 +1,5 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
-import registerService from './authService'
+import {registerService , logoutService} from './authService'
 
 //getting the user from the local storage in the browser
 //parsing the string into JSON
@@ -17,6 +17,22 @@ const initialState = {
 export const login = createAsyncThunk('auth/login' , async (userData , thunkApi) => {
     console.log(userData)
 })
+
+
+//asynchronus action
+//redux middleware - performs asynchronus task and then automatically call the actions and update the states
+//you can catch the actions on extra reducers in the slice
+//logging out a user in the localstorage
+//slice - auth
+//actions - logout.pending , logout.fullfilled , logout.rejected
+//payload -- null for fullfilled
+//payload -- null for rejected
+
+export const logout = createAsyncThunk('auth/logout' , async () => {
+    return logoutService()
+})
+
+
 
 
 //asynchronus action
@@ -114,6 +130,12 @@ export const register = createAsyncThunk('auth/register' , async (userData , thu
             state.isLoading = false
             state.user = null
             state.message = action.payload
+        })
+
+         //adding action - logout.fullfilled
+        // updating the state
+        .addCase(logout.fulfilled , (state) => {
+            state.user = null
         })
     }
 

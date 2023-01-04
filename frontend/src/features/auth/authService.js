@@ -18,4 +18,17 @@ const registerService =  async (userData) => {
 }
 
 
-export default registerService
+//service - logout
+//def - clears the user from local storage and also update the global state
+
+const logoutService =   () => {
+    
+    //removes the user from localstorage
+    localStorage.removeItem('user')
+    
+    
+    
+}
+
+
+export  {registerService , logoutService}

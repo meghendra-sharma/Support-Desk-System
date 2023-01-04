@@ -51,7 +51,7 @@ function Register() {
     }
 
     // if the user successfully registered
-    else if(isSuccess){
+    else if(isSuccess || user){
 
       //used to navigate through react-routes
       navigate('/')
@@ -90,7 +90,7 @@ function Register() {
       }
 
       //action -- asynchronus
-      //calling the backend register api -- api/users
+      //calling the backend register api -- api/users 
       dispatch(register(userData))
     }
   }
