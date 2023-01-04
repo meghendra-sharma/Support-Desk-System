@@ -8,8 +8,8 @@ import {BsPersonFill} from 'react-icons/bs'
 function Header() {
   return (
     <div>
-    <nav class="navbar bg-light mx-sm-4">
-    <div class="container-fluid">
+    <nav className="navbar bg-light mx-sm-4">
+    <div className="container-fluid">
       {/* <a class="navbar-brand">Navbar</a> */}
       <h3 className='fw-bolder'><Link className=' navbar-brand ps-2' to  = '/' > Support Desk</Link></h3>
       <div className='d-flex justify-content-between'>
@@ -20,7 +20,7 @@ function Header() {
     </div>
     
   </nav>
-  <hr class = 'my-0'/>
+  <hr className = 'my-0'/>
   
   </div>
   )

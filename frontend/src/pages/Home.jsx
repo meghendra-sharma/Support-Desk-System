@@ -13,9 +13,9 @@ function Home() {
             <h4 className='fw-bold text-secondary'>Please Choose from an option below</h4>
           </div>
           <div>
-            <div class="d-grid gap-3">
-              <Link class="btn btn-light border border-dark fw-bold" to='new-ticket'><BsQuestionDiamondFill/> Create New Ticket</Link>
-              <Link class="btn btn-dark fw-bold" to='tickets'> <AiOutlineFundView/> View My Tickets</Link>
+            <div className="d-grid gap-3">
+              <Link className="btn btn-light border border-dark fw-bold" to='new-ticket'><BsQuestionDiamondFill/> Create New Ticket</Link>
+              <Link className="btn btn-dark fw-bold" to='tickets'> <AiOutlineFundView/> View My Tickets</Link>
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ const express = require("express")
 const {errorHandler} = require("./middlewares/errorMiddleware")
 const dotenv = require("dotenv").config()
 const {connectDB} = require("./config/db")
+const cors = require('cors')
 
 
 //Setting up the port on which server will listen the requests and send response.
@@ -17,6 +18,9 @@ const app = express()
 //adding middleware - bodyParser
 app.use(express.json())
 app.use(express.urlencoded({extended : false}))
+
+//comment needs to be added
+app.use(cors())
 
 //Home route of application
 app.get("/" , (req,res) => {

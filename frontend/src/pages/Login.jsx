@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import {RiLoginBoxFill} from 'react-icons/ri'
+import { useDispatch } from 'react-redux'
+import { login } from '../features/auth/authSlice'
 
 
 function Login() {
@@ -11,6 +13,7 @@ function Login() {
   })
 
   const {email,password} = formData
+  const dispatch = useDispatch()
 
 
   function onChange(event) {
@@ -26,6 +29,16 @@ function Login() {
     })
 }
 
+function onSubmit(event){
+  event.preventDefault()
+  const userData = {
+      email,
+      password
+    }
+    dispatch(login(userData))
+  }
+
+
 
   return (
     <div className='container text-center my-2'>
@@ -36,7 +49,7 @@ function Login() {
             <h4 className='fw-bolder text-secondary'>Please login to get the Support</h4>
           </div>
           <div>
-            <form action="">
+            <form onSubmit={onSubmit}>
               
               <div className='form-group mb-3 mb-sm-3'>
                 <input onChange = {onChange} value = {email} className='form-control' type="email" name="email" id="email" placeholder='Email' required />
