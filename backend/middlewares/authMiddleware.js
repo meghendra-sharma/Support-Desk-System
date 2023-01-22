@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken")
 const { verifyToken } = require("../jwt/verifyToken")
+const User = require('../models/userModel')
 
 //authenticating a user 
 //checking whether the token is valid or not
@@ -15,8 +16,18 @@ const authenticate = async (req,res,next) => {
         //if valid -- return a decoded payload
         //if invalid -- throw an error
         verifyToken(token,process.env.JWT_SECRET).then((decoded) => {
-            req.user = decoded.id
-            next()
+            
+            //asynchronus operation -- findById
+            //return promise
+            //return document or throw error
+            //using select for projection excluding password property from user document
+            return User.findById(decoded.id).select('-password')
+            
+            
+        }).then((user) => {
+            //adding user into the request for next middleware to use it.
+            req.user = user
+            next() //calling the next middleware
         }).catch((error) => {
             res.status(401)
             next(error)

@@ -13,6 +13,7 @@ connectDB()
 
 
 //Creating express app
+
 const app = express()
 
 //adding middleware - bodyParser
@@ -28,8 +29,13 @@ app.get("/" , (req,res) => {
 })
 
 
-//User Routes -- register,login
+//User Routes -- register,login , getMe
+//adding router for users routes
 app.use("/api/users" , require("./routes/userRoutes"))
+
+//Ticket Routes -- getTickets , createTickets
+//adding router for tickets routes
+app.use("/api/tickets" , require("./routes/ticketRoutes"))
 
 //middleware -- errorHandler
 app.use(errorHandler)

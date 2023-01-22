@@ -1,5 +1,5 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
-import {registerService , logoutService} from './authService'
+import {registerService , logoutService , loginService} from './authService'
 
 //getting the user from the local storage in the browser
 //parsing the string into JSON
@@ -14,8 +14,56 @@ const initialState = {
     isSuccess : false,
 }
 
+
+//asynchronus action
+//redux middleware - performs asynchronus task and then automatically call the actions and update the states
+//you can catch the actions on extra reducers in the slice
+//login a user in the database
+//slice - auth
+//actions - login.pending , login.fullfilled , login.rejected
+//payload -- user for fullfilled
+//payload -- message for rejected
+
 export const login = createAsyncThunk('auth/login' , async (userData , thunkApi) => {
-    console.log(userData)
+    return loginService(userData).then((response) => {
+
+        //promise fullfilled
+        
+        //returns the response object from the server
+        //getting the data from response -- response.data
+        const user = response.data
+        console.log(user) //for debugging purpose
+        localStorage.setItem('user',JSON.stringify(user)) //stroing the user in the browser
+        return user
+    }).catch((error) => {
+
+        //promise rejected
+        //returns the error object from the server
+        
+        console.log(error) //for debugging purpose
+        var message = ''
+
+        //request was made and server also respond with the error 
+        if(error.response.data.message){
+            //getting the message from the error send by the server
+            message = error.response.data.message
+        }
+
+        //either request was made and server didn't respond or request was not made due to some error
+        //ex - page not found error
+        else{
+            //getting the message from the error object
+            message = error.message
+        }
+        
+        console.log(message) // for debugging purpose
+
+        //rejecting the promise
+        //dispatching the action -- register.rejected
+        //payload -- message
+        return thunkApi.rejectWithValue(message)
+        
+    })
 })
 
 
@@ -131,6 +179,33 @@ export const register = createAsyncThunk('auth/register' , async (userData , thu
             state.user = null
             state.message = action.payload
         })
+
+        //adding action - login.pending
+        // updating the state
+
+        .addCase(login.pending , (state) => {
+            state.isLoading = true
+        })
+
+        //adding action - login.fulfilled
+        // updating the state
+        .addCase(login.fulfilled , (state,action) => {
+            console.log(action.payload) //for debugging purpose
+            state.isSuccess = true
+            state.isLoading = false
+            state.user = action.payload
+        })
+
+        //adding action - login.rejected
+        // updating the state
+        .addCase(login.rejected , (state,action) => {
+            console.log(action.payload) //for debugging purpose
+            state.isError = true
+            state.isLoading = false
+            state.user = null
+            state.message = action.payload
+        })
+
 
          //adding action - logout.fullfilled
         // updating the state

@@ -60,7 +60,7 @@ function Register() {
     //resetting the global state -- auth
     //action  - synchronus
     dispatch(reset())
-  },[isError, isSuccess ,message, navigate , dispatch])
+  },[isError, isSuccess ,message,user ,  navigate , dispatch])
 
   function onChange(event) {
       

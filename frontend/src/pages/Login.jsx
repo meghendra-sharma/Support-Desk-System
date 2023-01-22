@@ -1,8 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import {RiLoginBoxFill} from 'react-icons/ri'
-import { useDispatch } from 'react-redux'
-import { login } from '../features/auth/authSlice'
+import { useDispatch ,useSelector} from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { login ,reset} from '../features/auth/authSlice'
+import {  toast } from 'react-toastify';
 
 
 function Login() {
@@ -12,8 +14,43 @@ function Login() {
     password : ''
   })
 
-  const {email,password} = formData
+
   const dispatch = useDispatch()
+
+  const navigate = useNavigate()
+
+  //destructuring local state
+  //local state  - formData
+  const {email,password} = formData
+
+
+   //destructuring global state
+  //global state  - auth
+  //hook -- useSelector
+  const {isError , isSuccess , message , isLoading , user} = useSelector((state) => state.auth)
+
+
+
+  //runs after first render or if the global state changes
+  //global state dependency  -- auth
+  useEffect(() => {
+
+    //if there is error when user register
+    if(isError){
+      toast.error(message)
+    }
+
+    // if the user successfully registered
+    else if(isSuccess || user){
+
+      //used to navigate through react-routes
+      navigate('/')
+    }
+
+    //resetting the global state -- auth
+    //action  - synchronus
+    dispatch(reset())
+  },[isError, isSuccess ,message,user ,  navigate , dispatch])
 
 
   function onChange(event) {

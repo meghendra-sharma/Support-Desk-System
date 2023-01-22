@@ -1,6 +1,9 @@
 const express = require("express")
 const { registerUser, loginUser ,getMe} = require("../controllers/userController")
 const { authenticate } = require("../middlewares/authMiddleware")
+
+//creating router object
+//router -- users
 const router = express.Router()
 
 //Register user route

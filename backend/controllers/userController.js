@@ -163,13 +163,18 @@ const loginUser = async (req,res,next) => {
 }
 
 
-//@desc -- return the user details if authorized
+//@desc -- return the user details if authorized, returns the id of the user
 //@route -- api/users/me
 //@access -- private/protected
 
 const getMe = (req,res) => {
-    console.log(req.user)
-    res.send(req.user)
+    
+    const user = {
+        id : req.user._id,
+        name : req.user.name,
+        email : req.user.email
+    }
+    res.status(200).json(user)
 }
 
 
