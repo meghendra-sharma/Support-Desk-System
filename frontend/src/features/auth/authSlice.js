@@ -220,5 +220,5 @@ export const register = createAsyncThunk('auth/register' , async (userData , thu
 //exporting actions
 export const {reset}  = authSlice.actions
 
-//exporting reducers
+//exporting reducer
 export default authSlice.reducer
