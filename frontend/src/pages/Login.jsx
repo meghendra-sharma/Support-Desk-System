@@ -5,6 +5,7 @@ import { useDispatch ,useSelector} from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { login ,reset} from '../features/auth/authSlice'
 import {  toast } from 'react-toastify';
+import Spinner from '../components/Spinner'
 
 
 function Login() {
@@ -30,11 +31,17 @@ function Login() {
   const {isError , isSuccess , message , isLoading , user} = useSelector((state) => state.auth)
 
 
+  
+
 
   //runs after first render or if the global state changes
   //global state dependency  -- auth
   useEffect(() => {
+    console.log('login') //for debugging purpose
 
+    // if(isLoading){
+    //   return <Spinner/>
+    // }
     //if there is error when user register
     if(isError){
       toast.error(message)
@@ -76,6 +83,10 @@ function onSubmit(event){
   }
 
 
+//Spinner Component
+  if(isLoading){
+    return <Spinner/>
+  }
 
   return (
     <div className='container text-center my-2'>

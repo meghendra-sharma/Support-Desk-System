@@ -6,6 +6,7 @@ import {useDispatch , useSelector} from 'react-redux'
 import { register, reset } from '../features/auth/authSlice';
 import { useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
+import Spinner from '../components/Spinner';
 
 
 
@@ -45,6 +46,7 @@ function Register() {
   //global state dependency  -- auth
   useEffect(() => {
 
+    console.log('register') //for debugging purpose
     //if there is error when user register
     if(isError){
       toast.error(message)
@@ -95,6 +97,11 @@ function Register() {
     }
   }
 
+
+  //Spinner Component
+  if(isLoading){
+    return <Spinner/>
+  }
 
   return (
     <div className='container text-center my-2'>
