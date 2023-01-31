@@ -2,10 +2,12 @@ import React from 'react'
 
 function Spinner() {
   return (
-    <div class="text-center">
-  <div class="spinner-border" role="status">
-    <span class="sr-only"></span>
+    <div className="text-center mt-5">
+  <div className="spinner-border" role="status">
+    <span className="sr-only"></span>
   </div>
+
+
 </div>
   )
 }

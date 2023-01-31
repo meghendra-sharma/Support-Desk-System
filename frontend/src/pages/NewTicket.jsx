@@ -6,6 +6,7 @@ import Spinner from '../components/Spinner'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import Back from '../components/Back'
 
 function NewTicket() {
     //destructuring global state
@@ -91,6 +92,7 @@ function NewTicket() {
 
   return (
     <div className='container text-center my-2'>
+      <div className='text-start mt-4'> <Back url='/'/> </div>
       <div className='row'>
         <div className="col-sm-6 col-lg-4 mx-auto">
           <div className='my-4 my-sm-5'>
@@ -102,15 +104,15 @@ function NewTicket() {
               
             <div className='form-group mb-3 mb-sm-3'>
                 <label className='fw-bold text-start w-100' htmlFor = 'name'>Customer name</label>
-                <input  value = {name} className='form-control text-muted bg-light fw-bold' type="text" name="name" id="name" placeholder='Name' readonly required />
+                <input  value = {name} className='form-control text-muted bg-light fw-bold font-monospace' type="text" name="name" id="name" placeholder='Name' readonly required />
               </div>
               <div className='form-group mb-3 mb-sm-3'>
                 <label className='fw-bold text-start w-100' htmlFor = 'email'>Customer email</label>
-                <input  value = {email} className='form-control text-muted bg-light fw-bold' type="email" name="email" id="email" placeholder='Email' readonly required />
+                <input  value = {email} className='form-control text-muted bg-light fw-bold font-monospace' type="email" name="email" id="email" placeholder='Email' readonly required />
               </div>
               <div className='form-group mb-3 mb-sm-3'>
                     <label className='fw-bold text-start w-100' htmlFor="product">Product</label>
-                    <select onChange={onChange} value = {product} class="form-control " name='product' id="product">
+                    <select onChange={onChange} value = {product} class="form-control font-monospace " name='product' id="product">
                     <option selected = {product === 'iPhone' && true}>iPhone</option>
                     <option selected = {product === 'iMac' && true}>iMac</option>
                     <option selected = {product === 'iPad' && true}>iPad</option>
@@ -120,7 +122,7 @@ function NewTicket() {
 
                 <div className='form-group mb-3 mb-sm-3'>
                 <label className='fw-bold text-start w-100' htmlFor="description">Description of the issue</label>
-                <textarea onChange={onChange} value={description} name='description' class="form-control" id="description" rows="2"></textarea>
+                <textarea onChange={onChange} value={description} name='description' class="form-control font-monospace" id="description" rows="2"></textarea>
                   </div>
                 <div className='form-group mb-3 mb-sm-3'>
                 <input className='btn btn-dark  btn-block w-100' type="submit" value="Submit"  />

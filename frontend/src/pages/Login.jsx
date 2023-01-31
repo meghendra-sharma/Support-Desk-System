@@ -100,10 +100,10 @@ function onSubmit(event){
             <form onSubmit={onSubmit}>
               
               <div className='form-group mb-3 mb-sm-3'>
-                <input onChange = {onChange} value = {email} className='form-control' type="email" name="email" id="email" placeholder='Email' required />
+                <input onChange = {onChange} value = {email} className='form-control font-monospace' type="email" name="email" id="email" placeholder='Email' required />
               </div>
               <div className='form-group mb-3 mb-sm-3'>
-                <input onChange = {onChange} value = {password} className='form-control' type="password" name="password" id="password" placeholder='Password' required />
+                <input onChange = {onChange} value = {password} className='form-control font-monospace' type="password" name="password" id="password" placeholder='Password' required />
               </div>
               
               <div className='form-group mb-3 mb-sm-3'>
