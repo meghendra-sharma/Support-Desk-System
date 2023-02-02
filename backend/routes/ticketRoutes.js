@@ -6,6 +6,11 @@ const {getTickets , createTicket, getSingleTicket, deleteSingleTicket, updateSin
 //router -- tickets
 const router = express.Router()
 
+//adding router -- note
+//added note router into the ticket router
+const noteRouter = require('./noteRoutes')
+router.use('/:ticketId/notes',noteRouter)
+
 //api -- api/tickets
 //method -- get and post both
 //service -- get tickets , create ticket

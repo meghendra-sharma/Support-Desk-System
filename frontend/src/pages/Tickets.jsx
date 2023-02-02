@@ -57,9 +57,9 @@ if(isLoading){
               
         </div>
   
-          {tickets.map((ticket) => {
+          {tickets.length > 0 ? tickets.map((ticket) => {
             return <TicketItem key={ticket._id} ticket = {ticket} />
-          })}
+          }) : <div className='font-monospace fw-bold'>You have no tickets</div> }
 </div>
     </div>
   )
