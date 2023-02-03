@@ -1,18 +1,24 @@
 import axios from "axios"
 
 
+//code used in production
+//in production -- it will use the backend base url
+//in development -- it will use proxy i.e http://localhost:PORT
+const backendBaseURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BACKEND_BASE_URL : ''
+
+
 //backend API -- to create a ticket
-const createTicketAPIURL = '/api/tickets'
+const createTicketAPIURL = backendBaseURL +  '/api/tickets'
 
 //backend API -- to get all the tickets of a user
-const getAllTicketsAPIURL = '/api/tickets'
+const getAllTicketsAPIURL = backendBaseURL +  '/api/tickets'
 
 
 //backend API -- to get the single ticket of a user
-const getSingleTicketAPIURL = '/api/tickets/'
+const getSingleTicketAPIURL = backendBaseURL +  '/api/tickets/'
 
 //backend API -- to update the single ticket of a user
-const updateSingleTicketAPIURL = '/api/tickets/'
+const updateSingleTicketAPIURL = backendBaseURL +  '/api/tickets/'
 
 
 //service - createTicket

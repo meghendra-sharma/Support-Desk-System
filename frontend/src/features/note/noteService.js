@@ -1,12 +1,16 @@
 import axios from 'axios'
 
+//code used in production
+//in production -- it will use the backend base url
+//in development -- it will use proxy i.e http://localhost:PORT
+const backendBaseURL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BACKEND_BASE_URL : ''
 
 //backend API -- to create a note 
-const createNoteAPIURL = '/api/tickets/'
+const createNoteAPIURL = backendBaseURL + '/api/tickets/'
 
 
 //backend API -- to get all notes 
-const getNotesAPIURL = '/api/tickets/'
+const getNotesAPIURL =  backendBaseURL + '/api/tickets/'
 
 //service - createNote
 //def - create a note in the database
